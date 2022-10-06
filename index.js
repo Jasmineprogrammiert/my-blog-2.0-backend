@@ -21,8 +21,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); 
 
 mongoose
-  .connect(process.env.dbURL)
-  .then(() => app.listen(process.env.PORT))
+  .connect('mongodb+srv://Jasmine:y1Z8W8c0VdcF351m@myblog.3nkrtkq.mongodb.net/blog?retryWrites=true&w=majority')
+  .then(() => app.listen(8000))
   .catch(err => console.log(err));
 
 const storage = multer.diskStorage({
