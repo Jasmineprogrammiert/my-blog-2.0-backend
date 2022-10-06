@@ -20,9 +20,9 @@ app.use(
   })
 );
 
-app.use('/api/blogs', blogRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes); 
+app.use('/blogs', blogRoutes);
+app.use('/auth', authRoutes);
+app.use('/users', userRoutes); 
 
 mongoose
   .connect('mongodb+srv://Jasmine:y1Z8W8c0VdcF351m@myblog.3nkrtkq.mongodb.net/blog?retryWrites=true&w=majority')
@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post('/api/upload', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('file'), (req, res) => {
   res.status(200).json('File has been uploaded')
 });
 
