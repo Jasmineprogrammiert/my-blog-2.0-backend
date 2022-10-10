@@ -1,27 +1,18 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const cors = require('cors');
-const multer = require('multer');
 const cookieParser = require('cookie-parser');
-// routes
+const dotenv = require('dotenv');
 const blogRoutes = require('./routes/blogRoutes');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const mongoose = require('mongoose');
+const multer = require('multer');
 
 const app = express();
-dotenv.config();
-
+app.use(cors({origin: '*'}));
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({
-//   origin: '*',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true,
-// }));
-
-app.use(cors({origin: '*'}));
-// app.use(cors());
+dotenv.config();
 
 app.use('/blogs', blogRoutes);
 app.use('/auth', authRoutes);
