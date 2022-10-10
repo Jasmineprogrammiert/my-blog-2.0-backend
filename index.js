@@ -14,11 +14,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({ 
-    origin: ['https://lieblingsjasmin.com', 'http://localhost:1209']
-  })
-);
+app.use(cors());
 
 app.use('/blogs', blogRoutes);
 app.use('/auth', authRoutes);
