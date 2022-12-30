@@ -5,8 +5,7 @@ const blogController = require('../controllers/blogController');
 router.post('/', blogController.createBlog);
 router.get('/', blogController.allBlogs);
 router.get('/:id', blogController.singleBlog);
-// router.put('/:id', blogController.updateBlog);
-router.patch('/:id', blogController.updateBlog);
+router.put('/:id', blogController.updateBlog);
 router.delete('/:id', blogController.deleteBlog);
 
 module.exports = router;

@@ -16,10 +16,10 @@ router.get("/:id", async (req, res) => {
 // router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   if (req.body.userId === req.params.id) {
-    if (req.body.password) {
-      const salt = await bcrypt.genSalt(10);
-      req.body.password = await bcrypt.hash(req.body.password, salt);
-    }
+    // if (req.body.password) {
+    //   const salt = await bcrypt.genSalt(10);
+    //   req.body.password = await bcrypt.hash(req.body.password, salt);
+    // }
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.id,
@@ -34,7 +34,9 @@ router.patch('/:id', async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  } else {
+  } 
+  
+  else {
     res.status(401).json('You can only update your account!');
   }
 });
