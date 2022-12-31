@@ -14,17 +14,35 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  try {
-    const updatedUser = await User.findByIdAndUpdate
-    (
-      req.params.id,
-      { $set: req.body },
-      { new: true }
-    );
-    res.status(200).json(updatedUser);
-  } catch (err) {
-    res.status(500).json(err);
+  if (req.body._id === req.params._id) {
+    try {
+      const updatedUser = await User.findByIdAndUpdate
+      (
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.status(401).json('Authorization failed')
   }
+
+  // try {
+  //   const updatedUser = await User.findByIdAndUpdate
+  //   (
+  //     req.params.id,
+  //     { $set: req.body },
+  //     { new: true }
+  //   );
+  //   res.status(200).json(updatedUser);
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
+
+
 
   // should verify the token instead
 
