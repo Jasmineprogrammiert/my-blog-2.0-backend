@@ -25,6 +25,9 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+
+  // should verify the token instead
+
   // if (req.body.userId === req.params.id) {
   //   if (req.body.password) {
   //     const salt = await bcrypt.genSalt(10);
