@@ -15,16 +15,10 @@ router.get("/:id", async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   if (req.body._id === req.params.id) {
-    if (password) {
+    if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
-      password = await bcrypt.hash(password, salt);
-    } else {
-      res.status(500).json('Something goes wrong')
+      req.body.password = await bcrypt.hash(password, salt);
     }
-    // const salt = await bcrypt.genSalt(10);
-    // const hash = await bcrypt.hash(password, salt);
-    // const user = await this.create({ username, email, password: hash });
-
     try {
       const updatedUser = await User.findByIdAndUpdate
       (
