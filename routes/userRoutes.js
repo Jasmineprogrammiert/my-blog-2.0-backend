@@ -14,7 +14,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  if (req.body._id === req.params._id) {
+  if (req.body._id === req.params.id) {
     try {
       const updatedUser = await User.findByIdAndUpdate
       (
