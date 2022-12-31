@@ -15,6 +15,16 @@ router.get("/:id", async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   if (req.body._id === req.params.id) {
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(password, salt);
+      req.body.password = await this.create({ password: hash })
+      // req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+    // const salt = await bcrypt.genSalt(10);
+    // const hash = await bcrypt.hash(password, salt);
+    // const user = await this.create({ username, email, password: hash });
+
     try {
       const updatedUser = await User.findByIdAndUpdate
       (
@@ -30,22 +40,25 @@ router.put('/:id', async (req, res) => {
     res.status(401).json('Authorization failed')
   }
 
-  // try {
-  //   const updatedUser = await User.findByIdAndUpdate
-  //   (
-  //     req.params.id,
-  //     { $set: req.body },
-  //     { new: true }
-  //   );
-  //   res.status(200).json(updatedUser);
-  // } catch (err) {
-  //   res.status(500).json(err);
+  // if (req.body._id === req.params.id) {    
+  //   try {
+  //     const updatedUser = await User.findByIdAndUpdate
+  //     (
+  //       req.params.id,
+  //       { $set: req.body },
+  //       { new: true }
+  //     );
+  //     res.status(200).json(updatedUser);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // } else {
+  //   res.status(401).json('Authorization failed')
   // }
 
 
 
   // should verify the token instead
-
   // if (req.body.userId === req.params.id) {
   //   if (req.body.password) {
   //     const salt = await bcrypt.genSalt(10);
