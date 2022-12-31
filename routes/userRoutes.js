@@ -17,9 +17,9 @@ router.put('/:id', async (req, res) => {
   if (req.body._id === req.params.id) {
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(password, salt);
-      req.body.password = await this.create({ password: hash })
-      // req.body.password = await bcrypt.hash(req.body.password, salt);
+      // const hash = await bcrypt.hash(password, salt);
+      // req.body.password = await this.create({ password: hash })
+      req.body.password = await bcrypt.hash(req.body.password, salt);
     }
     // const salt = await bcrypt.genSalt(10);
     // const hash = await bcrypt.hash(password, salt);
