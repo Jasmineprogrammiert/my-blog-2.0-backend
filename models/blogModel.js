@@ -54,7 +54,7 @@ const BlogSchema = new mongoose.Schema(
       type: Object,
       required: false,
     },
-  }, { timestamps: true }
+  }, { timestamps: true } // mongoose assigns createdAt and updatedAt fields to the schema automatically
 );
 
 module.exports = mongoose.model('Blog', BlogSchema);
