@@ -24,6 +24,10 @@ const BlogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    url_title: {
+      type: String,
+      required: true,
+    },
     date: {
       type: String,
       required: true,

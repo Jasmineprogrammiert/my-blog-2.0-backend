@@ -18,10 +18,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profilePic: {
-    type: String,
-    default: '',
-  },
 }, { timestamps: true });
 
 // static signup method 
@@ -41,7 +37,7 @@ UserSchema.statics.signup = async function (username, email, password) {
     throw Error('Username or email is already taken');
   }
 
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(10); // random value added to the pwd
   const hash = await bcrypt.hash(password, salt);
   const user = await this.create({ username, email, password: hash });
 
