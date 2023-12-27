@@ -22,7 +22,7 @@ const allBlogs = async (req, res) => {
 }
 const singleBlog = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findOne({ url_title: req.params.url_title });
     res.status(200).json(blog);
   } catch (err) {
     res.status(500).json(err);
@@ -32,8 +32,7 @@ const singleBlog = async (req, res) => {
 // update: put
 const updateBlog = async (req, res) => {
   try {
-    const updateBlog = await Blog.findByIdAndUpdate
-    (
+    const updateBlog = await Blog.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true }
